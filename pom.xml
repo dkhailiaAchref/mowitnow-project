@@ -13,7 +13,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <!-- JAVA -->
-      <compiler.release.version>1.8</compiler.release.version>
+      <compiler.release.version>8</compiler.release.version>
       <compiler.source.version>${compiler.release.version}</compiler.source.version>
       <compiler.target.version>${compiler.release.version}</compiler.target.version>
       <!-- MAVEN Plugins -->
@@ -115,6 +115,15 @@
                       </goals>
                   </execution>
               </executions>
+          </plugin>
+          <plugin>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-maven-plugin</artifactId>
+              <configuration>
+                  <arguments>
+                      <argument>--spring.profiles.active=dev</argument>
+                  </arguments>
+              </configuration>
           </plugin>
       </plugins>
   </build>

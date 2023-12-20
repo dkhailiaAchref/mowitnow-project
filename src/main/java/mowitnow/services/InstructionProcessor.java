@@ -18,7 +18,23 @@ public  class InstructionProcessor {
 	 * @param coordonnesMax : coordonnees de la pelouse - coin superieur droit de la pelouse
 	 * @return coordonnees : nouvelles coordonnees de la tondeuse
 	 * @throws ExceptionMower
-	 */
+	 * 	 * 	 ** faire pivoter la tondeuse à droite
+	 * 	 * 	 *
+	 * 	 * 					 N
+	 * 	 					 |
+	 * 	 * 					 |y-----
+	 * 	 * 					 |     |
+	 * 	 * 	 W --------------|----x|----------- E
+	 * 	 * 					 |
+	 * 	 * 					 |
+	 * 	 * 					 S
+	 * 	 *
+	 * 	 * MOVE_FORWARD => orientation = N => ( x=x , y=y+1)
+	 *   * MOVE_FORWARD => orientation = S => ( x=x , y=y-1)
+	 *   * MOVE_FORWARD => orientation = E => ( x=x+1 , y=y)
+	 *   * MOVE_FORWARD => orientation = W=> ( x=x-1 , y=y)
+	 *  */
+
 	public static Coordinates moveforwardMower(MowerPosition positionTondeuse, Coordinates coordonnesMax) throws ExceptionMower {
 		Coordinates coordonneesSuivantes = null;
 		int x, y;
@@ -54,10 +70,23 @@ public  class InstructionProcessor {
 	}
 	
 	/**
-	 * faire pivoter la tondeuse à droite
 	 * @param orientation : orientation initiale de la tondeuse
 	 * @return nouvelle orientation 
 	 * @throws ExceptionMower
+	 * 	 ** faire pivoter la tondeuse à droite
+	 * 	 *
+	 * 					 N
+	 * 					 |
+	 * 					 |
+	 * 	 W --------------|--------------- E
+	 * 					 |
+	 * 					 |
+	 * 					 S
+	 *
+	 * RIGHT => orientation =N => orientation =E
+	 * RIGHT => orientation =E => orientation =S
+	 * RIGHT => orientation =S => orientation =W
+	 * RIGHT => orientation =W=> orientation =N
 	 */
 	
 	public static Orientation rotateRight(Orientation orientation) throws ExceptionMower {
@@ -81,11 +110,25 @@ public  class InstructionProcessor {
 		return orientationSuivante;		
 	}
 	
-	/**
-	 * pivoter la tondeuse à gauche
-	 * @param orientation : orientation initale de la tondeuse
+	/** *
+	 *  @param orientation : orientation initale de la tondeuse
 	 * @return nouvelle orientation
 	 * @throws ExceptionMower
+	 *
+	 ** pivoter la tondeuse à gauche (G)
+	 *
+					 N
+					 |
+					 |
+	 W --------------|--------------- E
+					 |
+					 |
+					 S
+
+	 * LEFT => orientation =N => orientation =W
+	 * LEFT => orientation =E => orientation =N
+	 * LEFT => orientation =S => orientation =E
+	 * LEFT => orientation =W=> orientation =S
 	 */
 	public static Orientation rotateLeft(Orientation orientation) throws ExceptionMower {
 		Orientation orientationSuivante = null ;
